@@ -1,0 +1,56 @@
+#!/usr/bin/envpython
+
+import Tkinter as tk
+
+class Application(tk.Frame):
+
+def __init__(self,master=None):
+            tk.Frame.__init__(self,master)
+self.grid()
+ 
+self.createWidgets()
+    def createWidgets(self):
+     self.quitButton
+= tk.Button(self,
+text='Quit',
+command=self.quit)
+6
+self.quitButton.grid()
+7
+app = Application()
+8
+app.master.title('Sample
+application')
+9
+app.mainloop()
+------------------------------------------------------------------------
+import time
+start = time.time()
+
+# code here
+
+end = time.time()
+print(end - start)
+-------------------------------
+You are given an array of n numbers and q queries. For each query you have to print the floor of the expected value(mean) of the subarray from L to R.
+
+Input:
+
+First line contains two integers N and Q denoting number of array elements and number of queries.
+# input N - num of elements in array
+# input Q- num of eteration
+
+Next line contains N space seperated integers denoting array elements.
+# Enter the elements with space
+# loop starts.. do the opereation here
+
+Next Q lines contain two integers L and R(indices of the array).
+
+
+Output:
+
+print a single integer denoting the answer. 
+--------------------------------------------------
+885dfbae
+-------------------
+ SAP TAO,SAP testing,HP UFT, HP QTP , Automation Testing, Python, Hp Alm, Software Testing, Functional Testing, Regression Testing, Test Execution, VB SCRIPT, Selenium Webdriver

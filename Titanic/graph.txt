@@ -1,0 +1,8 @@
+g = sns.FacetGrid(dataframe, col='Survived', size=5, aspect=1, col_wrap = 2)
+g.map(plt.hist, 'Age', bins = 10, alpha=.5)
+g.add_legend()
+
+
+
+
+sns.distplot(dataframe['Age'], kde=True, rug = True, hist = True)

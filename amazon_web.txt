@@ -1,0 +1,106 @@
+plt.figure(figsize=[20,20])
+sns.countplot(data=toys,x='amaz_cat')
+plt.xticks(rotation=90, size =17)
+plt.show()
+-----------------------------------------------------------------
+catag = ['Hobbies', 'Characters & Brands', 'Fancy Dress', 'Bags',
+       'Arts & Crafts', 'Handbags & Shoulder Bags', 'Games',
+       'Figures & Playsets', 'Home Accessories', 'Sweets, Chocolate & Gum',
+       'Sports Toys & Outdoor', 'Die-Cast & Toy Vehicles',
+       'Baby & Toddler Toys', 'Storage, Cleaning & Ring Sizers',
+       'Bedding & Linens', 'Office Supplies', 'Party Supplies',
+       'Camping & Hiking', 'Pretend Play', 'Women', 'Electronic Toys',
+       'Car Parts', 'Dolls & Accessories', 'Indoor Lighting',
+       'Educational Toys', 'Laundry, Storage & Organisation',
+       "Supporters' Gear", 'Jams, Honey & Spreads',
+       'Novelty & Special Use', 'Musical Toy Instruments', 'Men',
+       'Sex & Sensuality', 'Cooking & Dining', 'Medication & Remedies',
+       'Puppets & Puppet Theatres', 'Jigsaws & Puzzles', 'Dogs',
+       'Medical Supplies & Equipment', 'Pens, Pencils & Writing Supplies',
+       'Worlds Apart', 'Gardening', 'Lab & Scientific Products',
+       'Novelty Jewellery']
+count = []
+name = []
+for i in catag:
+    new_ctag = toys[toys['amaz_cat'] == i]
+    cnt = new_ctag.amaz_cat.count()
+    if (cnt >=100):
+        count.append(cnt)
+        name.append(i)
+
+dfa = {'Name': pd.Series(name),
+      'Count': pd.Series(count)}
+df = pd.DataFrame(dfa)
+print(df)
+sns.barplot(data=df,x='Name',y='Count')
+plt.xticks(rotation =90, size = 17)
+plt.show()
+--------------------------------------------------------------------------
+counter = []
+numb = []
+for i in range(0,len(hobbies_df['amazon_category_and_sub_category'])):
+    b = len(hobbies_df['amazon_category_and_sub_category'].iloc[i])
+    counter.append(b)
+    numb.append(i)
+    
+daf ={'Number': pd.Series(counter),
+     'Count': pd.Series(numb)}
+df = pd.DataFrame(daf)
+sns.countplot(data=df, x= 'Number')
+plt.show()
+    
+-------------------------------------------------------------------
+hobbies_df['hobbies_2'] = ''
+
+for i in range(0,len(hobbies_df['amazon_category_and_sub_category'])):
+    if (len(hobbies_df['amazon_category_and_sub_category'].iloc[i]) >=2):
+        hobbies_df['hobbies_2'].iloc[i] = hobbies_df['amazon_category_and_sub_category'].iloc[i][1]
+
+hobbies_df['hobbies_3'] = ''
+
+for i in range(0,len(hobbies_df['amazon_category_and_sub_category'])):
+    if (len(hobbies_df['amazon_category_and_sub_category'].iloc[i]) >=3):
+        hobbies_df['hobbies_3'].iloc[i] = hobbies_df['amazon_category_and_sub_category'].iloc[i][2]
+        
+        
+hobbies_df['hobbies_4'] = ''
+
+for i in range(0,len(hobbies_df['amazon_category_and_sub_category'])):
+    if (len(hobbies_df['amazon_category_and_sub_category'].iloc[i]) >=4):
+        hobbies_df['hobbies_4'].iloc[i] = hobbies_df['amazon_category_and_sub_category'].iloc[i][3]
+        
+hobbies_df['hobbies_5'] = ''
+
+for i in range(0,len(hobbies_df['amazon_category_and_sub_category'])):
+    if (len(hobbies_df['amazon_category_and_sub_category'].iloc[i]) == 5):
+        hobbies_df['hobbies_5'].iloc[i] = hobbies_df['amazon_category_and_sub_category'].iloc[i][4]     
+        
+ --------------------------------------------------------------------------------
+ hobbies_df['hobbies_2'] = hobbies_df['hobbies_2'].str.strip('\'').str.replace('\'','')
+hobbies_df['hobbies_3'] = hobbies_df['hobbies_3'].str.strip('\'').str.replace('\'','')
+
+hobbies_df['hobbies_4'] = hobbies_df['hobbies_4'].str.strip('\'').str.replace('\'','').str.replace(']','')
+
+hobbies_df['hobbies_5'] = hobbies_df['hobbies_5'].str.strip('\'').str.replace('\'','').str.replace(']','')
+
+-------------------------------------------------------------------------------------
+ hob_2 =[' Model Trains & Railway Sets', ' Model Building Kits',
+       ' Collectible Figures & Memorabilia', ' Slot Cars',
+       ' Remote Controlled Devices', ' Trading Cards & Accessories']
+count = []
+hobb_2 = []
+for i in hob_2:
+    xyz =  hobbies_df[hobbies_df['hobbies_2'] == i]
+    cnt =  xyz.hobbies_2.count()
+    hobb_2.append(i)
+    count.append(cnt)
+    
+
+dsa = {'count': pd.Series(count),
+    'hob2': pd.Series(hobb_2)
+      }
+df = pd.DataFrame(dsa)
+print(df)
+sns.barplot(data=df,x='hob2',y='count')
+plt.xticks(rotation = 90, size = 17)
+plt.show()     

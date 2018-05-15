@@ -1,0 +1,233 @@
+Button
+``````````````
+########################With no class concept##############################
+from tkinter import *
+def ClickButton():
+    print('You have clicked me')
+
+root = Tk()
+f = Frame(root, height = 200, width= 300)
+f.propagate(0)
+f.pack()
+
+b = Button(f, text ='My Button', height = 2, width = 15, bg ='yellow', fg ='blue',
+           activebackground = 'green', activeforeground = 'red', command = ClickButton)
+
+q = Button(f, text ='Quit', height = 2, width = 15, bg ='yellow', fg ='blue',
+           activebackground = 'green', activeforeground = 'red', command = f.quit)
+
+b.pack()
+q.pack()
+
+root.mainloop()
+-----------------------------------------------------------------------------------------------------------
+################################# With class concept ######################################
+from tkinter import *
+class Mybutton:
+    #create constructor
+    def __init__(self, root):
+        #create frame
+        self.f = Frame(root, height = 200, width = 200)
+        self.f.propagate(0)
+    #pack the frame
+        self.f.pack()
+    #create button and define the button
+        self.b = Button(self.f, text ='Click me', height = 2, width = 15, bg = 'yellow', fg ='green', activebackground ='green',
+                        activeforeground = 'yellow', command = self.clickme)
+
+        self.q = Button(self.f, text='Quit',height = 2, width = 15, bg = 'green', fg = 'yellow', activebackground = 'green',
+                        activeforeground = 'yellow', command = self.f.quit)
+    #pack the button
+        self.b.pack()
+        self.q.pack()
+    #creare a method inside the class so that the button can do something with the click
+    def clickme(self):
+        print('You have clicked me')
+
+#call the root
+root = Tk()
+# assign a object to the class
+call = Mybutton(root)
+#provide root in the mainloop
+root.mainloop()
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+from tkinter import *
+class Mybutton:
+    def __init__(self, root):
+        self.f = Frame(root, height = 300, width = 200)
+        self.f.propagate(0)
+        self.f.pack()
+
+        self.b1 = Button(self.f, height=2, text='RED',width=15, bg = 'red', fg='white', activebackground ='green',
+                         activeforeground ='white', command =lambda :self.Clickme(0))
+
+        self.b2 = Button(self.f, height=2,text='GREEN' ,width=15, bg='green', fg='white', activebackground='green',
+                         activeforeground='white', command=lambda :self.Clickme(1))
+
+        self.b3 = Button(self.f, height=2, text='ORANGE',width=15, bg='orange', fg='white', activebackground='green',
+                         activeforeground='white', command= lambda :self.Clickme(2))
+
+        self.b4 = Button(self.f, height=2, text = 'QUIT',width=15, bg='purple', fg='white', activebackground='green',
+                         activeforeground='white', command=self.f.quit)
+        self.b1.pack()
+        self.b2.pack()
+        self.b3.pack()
+        self.b4.pack()
+
+    def Clickme(self, num):
+        if num == 0:
+            self.f['bg'] ='red'
+        elif num == 1:
+            self.f['bg'] ='green'
+        else:
+            self.f['bg'] ='orange'
+
+
+root = Tk()
+b = Mybutton(root)
+root.mainloop()
+```````````````````````````````````````
+TEXT BOX
+````````````````````````````````````````
+from tkinter import *
+
+class MyText:
+    def __init__(self, root):
+        self.t = Text(root, width = 20, height = 10, fg ='blue', bg='yellow', wrap=WORD)
+        self.t.insert(END, 'India is my country\nI love India\nI am Indian\nI am from dhanbad\nIndia is my country\n'
+                           'I love India\nI am Indian\nI am from dhanbad\nIndia is my country\nI love India\n'
+                           'I am Indian\nI am from dhanbad')
+        self.t.pack(side =LEFT)
+        self.t.tag_add('start','1.0', '1.11')
+        self.t.tag_config('start', background ='red', foreground ='white')
+
+        self.scroll = Scrollbar(root, orient =VERTICAL, command =self.t.yview)
+        self.t.configure(yscrollcommand = self.scroll.set)
+        self.scroll.pack(side=LEFT,fill =Y)
+
+
+root =Tk()
+text = MyText(root)
+root.mainloop()
+
+`````````````````````````````````````````````````
+ScrollBar
+``````````````````````````````````````````````````
+from tkinter import *
+
+class MyText:
+    def __init__(self, root):
+        self.t = Text(root, height = 15, width = 70, wrap=NONE)
+        for i in range(50):
+            self.t.insert(END, 'i love my India')
+        self.t.pack(side=TOP, fill=X)
+        self.h = Scrollbar(root, orient =HORIZONTAL, command =self.t.xview)
+        self.t.configure(xscrollcommand=self.h.set)
+        self.h.pack(side=BOTTOM, fill =X)
+
+
+
+root =Tk()
+text = MyText(root)
+root.mainloop()
+````````````````````````````````````````````
+Checkbox/Radio 
+````````````````````````````````````````````
+from tkinter import *
+class checkbox:
+    def __init__(self, root):
+        #create frame
+        self.f = Frame(root, height = 400, width = 400)
+        self.f.propagate(0)
+        self.f.pack()
+        #assign varaibale to the checkboxes
+        self.var1 = IntVar()
+        self.var2 = IntVar()
+        self.var3 = IntVar()
+        #create the checkbox
+        self.c1 = Checkbutton(self.f,text='India',fg ='red',bg = 'yellow',variable = self.var1,
+                              command = self.display).place(x = 200, y = 200)
+        self.c2 = Checkbutton(self.f, text='Pakistan',fg ='red',bg = 'yellow',
+                              variable=self.var2, command=self.display).place(x=200,y =250)
+        self.c3 = Checkbutton(self.f, text='China',fg ='red',bg = 'yellow',variable=self.var3,
+                              command=self.display).place(x=200,y = 300)
+        # assign the function to be performed once the checkbox is clicked
+    def display(self):
+        x = self.var1.get()
+        y = self.var2.get()
+        z = self.var3.get()
+        str =''
+
+        if x==1:
+            str = str+' India'
+        if y ==1:
+            str = str+' Pakistan'
+        if z == 1:
+            str = str+' China'
+        Label(text = str, fg ='blue').place(x = 100, y = 100, height = 50)
+
+
+root =Tk()
+text = checkbox(root)
+root.mainloop()
+``````````````````````````````````````````````````````````
+TextBox
+``````````````````````````````````````````````````````````
+from tkinter import *
+class Login:
+    def __init__(self, root):
+        self.f = Frame(root, height =400, width = 400)
+        self.f.propagate(0)
+        self.f.pack()
+        # label
+        Label(self.f, text = 'Username:').place(x=50,y=50)
+        Label(self.f, text='Password:').place(x=50,y=100)
+        # Entry box
+        self.me1 = StringVar()
+        self.me2 = StringVar()
+        self.e1 = Entry(self.f,width = 15, fg ='blue', textvariable = self.me1,font =('Arial',14)).place(x = 150, y = 50)
+        self.e2 = Entry(self.f, width=15, fg='blue', textvariable = self.me2,
+                        font=('Arial', 14), show = '*').place(x=150, y=100)
+        # button to display
+        Button(self.f, text = 'Login_check', width = 20, fg= 'black', command = self.display).place(x = 100, y = 250)
+
+
+    def display(self):
+        str1 = self.me1.get()
+        str2 = self.me2.get()
+        Label(text = 'Your UserName is: '+str1).place(x =50, y = 300)
+        Label(text='Your password is: ' + str2).place(x=50, y=320)
+
+
+root = Tk()
+b = Login(root)
+root.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
